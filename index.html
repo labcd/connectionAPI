@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <title>Connection API</title>
+    </head>
+    <body>
+        <div id="app">
+            <p><a href="#" onClick="checkNetwork();">Check My Network State</p>
+        </div>
+    </body>
+
+        <!--<script src="http://31.22.226.59:8080/target/target-script-min.js#lobo"></script>-->
+        <script type="text/javascript" src="phonegap.js"></script>
+        <script type="text/javascript">
+            
+            document.addEventListener("deviceready", onDeviceReady, false);
+            
+            function onDeviceReady() {
+
+                // check network status
+                if(navigator.connection.type == "none") {
+                    alert("Check your nework status, Taskatone cannot operate without a fancy internet connection");
+                } else {
+                    alert(navigator.connection.type);
+                    alert(navigator.network.connection.type); // this is deprecated
+                }
+
+                checkNetwork();
+                
+            }
+
+            function checkNetwork(){
+
+                alert("Checking your network state");
+
+                var networkConnection = navigator.connection.type;
+
+                console.log(navigator.connection);
+                console.log(networkConnection);
+
+                var networkStates = {};
+                networkStates[Connection.UNKNOWN]  = 'Unknown connection';
+                networkStates[Connection.ETHERNET] = 'Ethernet connection';
+                networkStates[Connection.WIFI]     = 'WiFi connection';
+                networkStates[Connection.CELL_2G]  = 'Cell 2G connection';
+                networkStates[Connection.CELL_3G]  = 'Cell 3G connection';
+                networkStates[Connection.CELL_4G]  = 'Cell 4G connection';
+                networkStates[Connection.CELL]     = 'Cell generic connection';
+                networkStates[Connection.NONE]     = 'No network connection';
+
+                alert('Your Connection type: ' + networkStates[networkConnection]);
+
+
+            }
+
+            
+
+        </script>
+</html>
